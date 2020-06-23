@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import GoogleLogin from "./components/GoogleLogin";
 import Dashboard from "./components/Dashboard";
+import TableSort from "./components/TableSort";
 
 class App extends Component {
   render() {
@@ -17,6 +18,9 @@ class App extends Component {
               <Route exact path="/" component={GoogleLogin} />
               <Route path="/dashboard" component={Dashboard} />
             </Switch>
+          </div>
+          <div>
+            <TableSort />
           </div>
         </Router>
       </div>
