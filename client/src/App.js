@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import GoogleLogin from "./components/GoogleLogin";
-import Dashboard from "./components/Dashboard";
 import TableSort from "./components/TableSort";
 
 class App extends Component {
@@ -13,10 +12,11 @@ class App extends Component {
           <div className="container">
 
             <Navbar />
+
+            {/* <Graph /> */}
             
             <Switch>
               <Route exact path="/" component={GoogleLogin} />
-              <Route path="/dashboard" component={Dashboard} />
             </Switch>
           </div>
           <div>

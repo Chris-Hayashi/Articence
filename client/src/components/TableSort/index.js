@@ -3,6 +3,28 @@ import ReactDOM from 'react-dom';
 import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 import { csv } from 'd3';
+import Graph from '../Graph';
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+
+const options = [
+    "Gender",
+    "ssc_p",
+    "ssc_b",
+    "hsc_p",
+    "hsc_b",
+    "hsc_s",
+    "degree_p",
+    "degree_t",
+    "workex",
+    "etest_p",
+    "specialisation",
+    "mba_p",
+    "status",
+    "salary"
+];
+
+const defaultOption = options[0];
 
 const row = d => {
     d.sl_no = parseInt(d.sl_no);
@@ -12,18 +34,19 @@ const row = d => {
     d.etest_p = parseFloat(d.etest_p);
     d.mba_p = parseFloat(d.mba_p);
     d.salary = parseInt(d.salary);
-    // d.gender = +d.gender;
-    // d.ssc_b = +d.ssc_b;
-    // d.hsc_b = +d.hsc_b;
-    // d.hsc_s = +d.hsc_s;
-    // d.degree_t = +d.degree_t;
-    // d.workex = +d.workex;
-    // d.specialisation = +d.specialisation;
-    // d.status = +d.status;
     return d;
 }
 
+var graphData = [{
+
+}]
+
+const onSelect = (res) => {
+    // state.x_axis = res;
+}
+
 const TableSort = () => {
+
     const [data, setData] = useState([]);
     useEffect(() => {
         csv('data.csv', row).then(data => {
@@ -36,7 +59,6 @@ const TableSort = () => {
         id: "sl_no",
         Header: "sl_no",
         accessor: d => d.sl_no
-        // defaultSortDesc: true
     }, {
         Header: "gender",
         accessor: "gender"
@@ -89,67 +111,11 @@ const TableSort = () => {
 
     return (
         <div>
-            
-        <ReactTable data={data} columns={columns} />
+            <Dropdown options={options} onChange={onSelect} defaultOption={defaultOption} placeholder="Select an option" />;
+            <Graph graphData={graphData}/>
+            <ReactTable data={data} columns={columns} />
         </div>
     );
 }
 
 export default TableSort;
-
-// class TableSort extends Component {
-
-//     render() {
-        // const [data, setData] = useState([]);
-        // useEffect(() => {
-        //     csv('data.csv').then(data => {
-        //         setData(data);
-        //     })
-        // }, []);
-//         // const data =[{
-
-//         // }];
-
-        // const columns = [{
-        //     Header: "sl_no"
-        // }, {
-        //     Header: "gender"
-        // }, {
-        //     Header: "ssc_p"
-        // }, {
-        //     Header: "ssc_b"
-        // }, {
-        //     Header: "hsc_p"
-        // }, {
-        //     Header: "hsc_b"
-        // }, {
-        //     Header: "hsc_s"
-        // }, {
-        //     Header: "degree_p"
-        // }, {
-        //     Header: "degree_t"
-        // }, {
-        //     Header: "workex"
-        // }, {
-        //     Header: "etest_p"
-        // }, {
-        //     Header: "specialisation"
-        // }, {
-        //     Header: "mba_p"
-        // }, {
-        //     Header: "status"
-        // }, {
-        //     Header: "salary"
-        // }];
-        
-        // return (
-        //     <div>
-                
-        //     <ReactTable data={data} columns={columns} />
-        //     </div>
-        // );
-
-//     }
-// }
-
-// export default TableSort;

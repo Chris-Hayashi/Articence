@@ -11,10 +11,6 @@ export class Logintbygoogle extends Component {
             name: '',
             email: ''
         };
-        // this.signup = this      
-        //   .signup       
-        //   .bind(this);
-
     }
 
     signup(res) {
@@ -69,11 +65,6 @@ export class Logintbygoogle extends Component {
         return (
 
             < div className="App" >
-                < div className="row" >
-                    < div className="col-sm-12 btn btn-info" >
-                        Login With Google Using ReactJS
-            </div >
-                </div >
                 < div className="row" >
                     < div style={{ 'paddingTop': "20px" }} className="col-sm-12" >
                         < div className="col-sm-4" ></div>
