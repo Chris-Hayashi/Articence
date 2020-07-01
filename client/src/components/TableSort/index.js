@@ -4,27 +4,6 @@ import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 import { csv } from 'd3';
 import Graph from '../Graph';
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
-
-const options = [
-    "Gender",
-    "ssc_p",
-    "ssc_b",
-    "hsc_p",
-    "hsc_b",
-    "hsc_s",
-    "degree_p",
-    "degree_t",
-    "workex",
-    "etest_p",
-    "specialisation",
-    "mba_p",
-    "status",
-    "salary"
-];
-
-const defaultOption = options[0];
 
 const row = d => {
     d.sl_no = parseInt(d.sl_no);
@@ -37,9 +16,7 @@ const row = d => {
     return d;
 }
 
-var graphData = [{
-
-}]
+var graphData;
 
 const onSelect = (res) => {
     // state.x_axis = res;
@@ -51,6 +28,7 @@ const TableSort = () => {
     useEffect(() => {
         csv('data.csv', row).then(data => {
             console.log("data: ", data);
+            graphData = data;
             setData(data);
         });
     }, []);
@@ -111,9 +89,10 @@ const TableSort = () => {
 
     return (
         <div>
-            <Dropdown options={options} onChange={onSelect} defaultOption={defaultOption} placeholder="Select an option" />;
             <Graph graphData={graphData}/>
+            <div>
             <ReactTable data={data} columns={columns} />
+            </div>
         </div>
     );
 }
